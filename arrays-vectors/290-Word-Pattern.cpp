@@ -13,7 +13,9 @@ public:
             }
             m1[pattern[i]]=m2[word]=i+1;
         }
+        if(i==n){
         return true;
+        }else return false;
 
     }
 };
