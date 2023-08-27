@@ -1,0 +1,116 @@
+class MyHashMap {
+public:
+    class Node
+    {
+        public:
+        int key;
+        int val;
+        Node* next;
+        
+        Node(int k,int v,Node*n)
+        {
+            key=k;
+            val=v;
+            next=n;
+        }
+        Node(int k,int v)
+        {
+            key=k;
+            val=v;
+            next=nullptr;
+        }
+    };
+    vector<Node*> map;
+    const int size=1000000;
+    MyHashMap()
+    {
+        map.resize(size,nullptr);
+    }
+    int hash_fun(int k)
+    {
+        return k%size;
+    }
+    void put(int key,int value)
+    {
+        int hashed_idx=hash_fun(key);
+        if(map[hashed_idx]==nullptr)
+        {
+            Node*newNode=new Node(key,value);
+            map[hashed_idx]=newNode;
+        }
+        else
+        map[hashed_idx]->val=value;
+    }
+    int get(int key)
+    {
+        int hashed_idx=hash_fun(key);
+        if(map[hashed_idx]==nullptr)
+        return -1;
+        else return map[hashed_idx]->val;
+    }
+    void remove (int key)
+    {
+        int hashed_idx=hash_fun(key);
+        if(map[hashed_idx]==nullptr) return;
+        else
+        {
+            map[hashed_idx]=nullptr;
+        }
+    }
+};
+
+
+////////////////////////////////////////
+class MyHashMap {
+public:
+    int data[1000001];
+    MyHashMap() {
+        fill(data, data + 1000000, -1);
+    }
+    void put(int key, int val) {
+        data[key] = val;
+    }
+    int get(int key) {
+        return data[key];
+    }
+    void remove(int key) {
+        data[key] = -1;
+    }
+};
+////////////////////////////////
+class MyHashMap {
+public:
+    vector<pair<int, int>> mp;
+    MyHashMap() {
+        mp.resize(5);
+        mp.emplace_back(0, 0);
+    }
+    
+    void put(int key, int value) {
+        for (auto& indx : mp) {
+            if (indx.first == key) {
+                indx.second = value;
+                return;
+            }
+        }
+        mp.emplace_back(key, value);
+    }
+    
+    int get(int key) {
+        for (const auto& indx : mp) {
+            if (indx.first == key) {
+                return indx.second;
+            }
+        }
+        return -1;
+    }
+    
+    void remove(int key) {
+        for (auto it = mp.begin(); it != mp.end(); ++it) {
+            if (it->first == key) {
+                mp.erase(it);
+                return;
+            }
+        }
+    }
+};
