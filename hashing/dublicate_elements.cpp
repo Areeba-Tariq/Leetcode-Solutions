@@ -1,4 +1,4 @@
-//map
+//1-map(uses red black tree)
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -15,8 +15,9 @@ public:
 };
 //Time complexity: O(n∗log(n))
 //Space complexity: O(n)
+//tc becoz inserting a val need logn and there are n items
 
-//unordered map=hashmap
+//2-unordered map(uses hashmap)
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -36,9 +37,24 @@ public:
     return false;
     }
 };
+tc=o(n) ,sc=o(n)
+    
+//3-brute force gives TLE
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+        bool flag = false;
+        for(int i =0;i<nums.size();i++){
+            for(int j=i+1;j<nums.size();j++){
+                if(nums[i] == nums[j]) return true;
+            }
+        }
+        return flag;
+    }
+};
+//tc=o(n^2), sc=o(1)
 
-//using built in funs
-// Shorted Approach
+//4-using built in sort
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
@@ -49,3 +65,5 @@ public:
         return false;
     }
 };
+//tc=o(nlogn) becoz sort takes nlogn
+//sc=o(1)
