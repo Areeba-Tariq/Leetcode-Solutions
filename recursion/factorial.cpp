@@ -33,3 +33,19 @@ int main() {
 
     return 0;
 }
+
+
+//v3
+class Solution {
+  public:
+    int factorial(int n) {
+        
+        //base case
+        if(n==0 || n==1) return 1;
+        
+        //recursive fun
+        n=n*factorial(n-1);
+        return n;
+    }
+    
+};
