@@ -15,7 +15,8 @@ public:
 };
 //Time complexity: O(n∗log(n))
 //Space complexity: O(n)
-//tc becoz inserting a val need logn and there are n items
+//tc becoz inserting a val need logn and there are n items(for map which uses balencedBST aka red black tree)
+//if i use unordered_map  it uses hashtable so tc will be o(n)
 
 //2-unordered map(uses hashmap)
 class Solution {
@@ -43,13 +44,12 @@ tc=o(n) ,sc=o(n)
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        bool flag = false;
-        for(int i =0;i<nums.size();i++){
+        for(int i =0;i<nums.size()-1;i++){
             for(int j=i+1;j<nums.size();j++){
                 if(nums[i] == nums[j]) return true;
             }
         }
-        return flag;
+        return false;
     }
 };
 //tc=o(n^2), sc=o(1)
