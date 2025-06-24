@@ -1,0 +1,47 @@
+class Solution { 
+  public:
+  int reverseN(int n)
+  {
+      int ans=0;
+      while(n>0)
+      {
+          ans=(ans*10)+n%10;
+          n=n/10;
+      }
+      return ans;
+  }
+  int powerWithReverse(int n,int reverseNo)
+  {
+      if(reverseNo==0) return 1;
+      
+      return powerWithReverse(n,--reverseNo)*n; //if u do reverseNo-- same no will be passed and then decremet happens or do reverseNo-1
+  }
+    int reverseExponentiation(int n) {
+        // code here
+        
+        
+        int reverseNo=reverseN(n);
+        return powerWithReverse(n,reverseNo);
+    }
+};
+class Solution { 
+    public:
+    int reverseN(int n)
+    {
+        int ans=0;
+        while(n>0)
+        {
+            ans=(ans*10)+n%10;
+            n=n/10;
+        }
+        return ans;
+    }
+  
+      int reverseExponentiation(int n) {
+          // code here
+          
+          
+          int reverseNo=reverseN(n);
+          return pow(n,reverseNo);
+      }
+  };
