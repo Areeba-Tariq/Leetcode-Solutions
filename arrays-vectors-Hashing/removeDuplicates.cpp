@@ -43,9 +43,9 @@ int main() {
 
     return 0;
 }
-//tc= o(n)
+//tc= o(n^2)
 
-// Online C++ compiler to run C++ program online
+
 #include <iostream>
 #include<vector>
 #include<map>
@@ -56,9 +56,9 @@ vector<int>removeDuplicates(vector<int>&v)
     vector<int>ans;
     map<int,int>mp;
     int n=v.size();
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n;i++) //o
     {
-        mp[v[i]]++; //o(1)on avg
+        mp[v[i]]++; 
     }
     for(auto m:mp)
     {
@@ -89,34 +89,32 @@ int main() {
 
     return 0;
 } //o(nlogn)
+
 #include <iostream>
-#include <vector>
-#include <algorithm>  // only for sort
+#include<algorithm>// only for sort
+#include<vector>
 using namespace std;
-
-vector<int> removeDuplicates(vector<int>& v) {
-    sort(v.begin(), v.end());  // O(n log n)
-
-    int n = v.size();
-    int index = 0;  // index for placing unique elements
-
-    for (int i = 1; i < n; i++) {
-        if (v[i] != v[index]) {
-            index++;
-            v[index] = v[i];  // overwrite duplicates
+void removeDuplicates(vector<int>&arr,int n)
+{
+    int i=0;// index for placing unique elements
+    sort(arr.begin(),arr.end()); //nlogn
+    for(int j=i+1;i<n&&j<n;j++)
+    {
+        if(arr[i]!=arr[j])
+        {
+            i++;
+            arr[i]=arr[j]; // overwrite duplicates
         }
     }
-
-    v.resize(index + 1);  // shrink vector to contain only unique values
-    return v;
+    arr.resize(i+1); // shrink vector to contain only unique values
 }
-int main()
-{
-    vector<int>v={1,1,2,1,3,4,2,1};
-    removeDuplicates(v);
-    for(auto ele:v)
+
+int main() {
+    vector<int>arr={1,2,3,1,2,3,4,5,6,1};
+    removeDuplicates(arr,10);
+    for(auto a:arr)
     {
-        cout<<ele<<" ";
+        cout<<a<<" ";
     }
     return 0;
 }
