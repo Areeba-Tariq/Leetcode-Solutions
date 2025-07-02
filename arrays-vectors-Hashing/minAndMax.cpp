@@ -27,7 +27,7 @@ class Solution {
           int n=arr.size();
           int largest=INT_MIN;
           int smallest=INT_MAX;
-          pair<int,int>ans=findMax(arr,n,largest,smallest);
-          return ans;
+          return findMax(arr,n,largest,smallest);
+        
       }
   };
