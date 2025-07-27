@@ -46,3 +46,32 @@ public:
 
     }
 };//tc=o(n*klogk) where n=no of str and k=len of str  sc=o(n*k)
+//optimize sol
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        unordered_map<string,vector<string>>mp;
+        vector<vector<string>>ans;
+        vector<int>v(26,0);
+        string key="";
+        for(string& str:strs)
+        {
+            v= vector<int>(26, 0); 
+            for(char& c:str) //making signature
+            {
+                v[c-'a']++;
+            }
+            key="";
+            for(int s:v)//unique key is made
+            {
+                key+=to_string(s);
+            }
+            mp[key].push_back(str);
+        }
+        for(auto m:mp)
+        {
+            ans.push_back(m.second);
+        }
+        return ans;
+    }
+};//o(n*k) n is no of strs and k is len of str
