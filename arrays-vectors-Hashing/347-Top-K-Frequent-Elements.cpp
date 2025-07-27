@@ -40,4 +40,38 @@ class Solution {
     };
     //tc = o(k.n) for k times we are scaning entire map of n elements
 
-    
+    class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+        
+        unordered_map<int,int>mp;
+        for(int no:nums)//frequency
+        {
+            mp[no]++;
+        }
+        vector<int>frequencies;
+        for(auto m:mp)
+        {
+            frequencies.push_back(m.second);
+        }
+        sort(frequencies.begin(),frequencies.end());//nlogn
+        vector<int>ans;
+        int eleIdx=frequencies.size()-1;
+        while(k&&eleIdx>=0)//n*k
+        {
+            for(auto& m:mp)
+            {
+                if(frequencies[eleIdx]==m.second) 
+                {
+                    m.second=-1;
+                    ans.push_back(m.first);
+                    break;
+                }
+            }
+            k--;
+            eleIdx--;
+        }
+        return ans;
+    }
+};
+     //O(n log n + k * n)
