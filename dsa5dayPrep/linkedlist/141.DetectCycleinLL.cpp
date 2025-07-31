@@ -6,6 +6,9 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
+
+//Floyd’s Cycle Detection Algorithm (Tortoise and Hare)=>place slow and fast at head and move slow by 1 and fast by 2
+//and when if they meet i.e slow==fast then cycle exists
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
