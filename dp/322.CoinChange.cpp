@@ -1,4 +1,73 @@
-//TLE
+//recursive- algo class sol
+
+#include <iostream>
+using namespace std;
+int coin_change(int *arr,int n,int amt)
+{
+    if(n==1 || n<=0)return amt;
+    if(amt==0) return 0;
+    if(arr[n-1]>amt)
+    {
+        return coin_change(arr,n-1,amt);
+    }
+    else
+    {
+        return min((coin_change(arr,n-1,amt)),1+(coin_change(arr,n,amt-arr[n-1])));
+    }
+}
+int main() {
+    int* arr=new int[3]{1,2,3};
+    int amt=8;
+    int n=3;
+    
+    cout<<coin_change(arr,n,amt);
+    return 0;
+}
+//dp conversion-algo class sol
+
+#include <iostream>
+using namespace std;
+
+int coin_change(int *arr,int n,int amt)
+{
+    int R[n][amt]; //declaration
+    for(int j=0;j<amt;j++) //intilization
+    {
+        R[0][j]=j;
+    }
+    for(int i=0;i<n;i++)
+    {
+        R[i][0]=0;
+    }
+    for(int i=1;i<n;i++)
+    {
+        for(int j=1;j<amt;j++)
+        {
+            if(arr[i]>j){
+            R[i][j]=R[i-1][j];
+            }
+            else
+            {
+                R[i][j]=min((R[i-1][j]),(1+R[i][j-arr[i]]));
+            }
+        }
+    }
+    return R[n-1][amt-1];
+}
+int main() {
+    int* arr=new int[3]{1,2,3};
+    int amt=8;
+    int n=3;//gives correct sol
+int* arr = new int[3]{1, 5, 7};
+int amt = 11;
+int n = 3; //gives incorrect sol
+    
+    cout<<coin_change(arr,n,amt);
+    return 0;
+}
+//=>above code doesnot tackle edge and imp cases--v basic
+
+//TLE-leetcode
 class Solution {
 public:
 int MinCoins(vector<int> coins, int n, int amt)
@@ -30,7 +99,7 @@ int coinChange(vector<int>& coins, int amount) {
 }
 };
 
-//TLE
+//TLE-leetcode
 class Solution {
 public:
 int MinCoins(vector<int> coins, int n, int amt)
@@ -66,7 +135,7 @@ int coinChange(vector<int>& coins, int amount) {
     return MinCoins(coins, coins.size() - 1, amount);
 }
 };
-//dp sol
+//dp sol-leetcode
 class Solution {
 public:
 int MinCoins(vector<int> coins, int n, int amt)
