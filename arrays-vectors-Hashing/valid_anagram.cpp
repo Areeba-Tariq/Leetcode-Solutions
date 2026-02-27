@@ -34,13 +34,13 @@ public:
 //tc=nlogn---(sort fun takes nlogn for each
 // string and == comparing takes o(n)since it needs 
 //to compare every value of s and t)
-//sc=o(n)---(Sorting each string requires O(n) additional space)
+//sc=o(logn)--recursive stack used by sort()
 
 class Solution {
     public:
         void sortString(string& s) //otherwise pass by value pr wont work
         {
-            for(int i=0;i<s.size()-1;i++) //bubble sort 
+            for(int i=0;i<s.size()-1;i++) 
             {
                 for(int j=i+1;j<s.size();j++)
                 {
@@ -57,4 +57,4 @@ class Solution {
         }
     };
     //tc =o(n^2)
-    //sort fun => sort(str.begin(),str.end()) take  O(n log n) time === more effcient than bubble sort
+    //sort fun => sort(str.begin(),str.end()) take  O(n log n) time
