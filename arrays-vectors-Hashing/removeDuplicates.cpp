@@ -90,31 +90,23 @@ int main() {
     return 0;
 } //o(nlogn)
 
-#include <iostream>
-#include<algorithm>// only for sort
-#include<vector>
-using namespace std;
-void removeDuplicates(vector<int>&arr,int n)
-{
-    int i=0;// index for placing unique elements
-    sort(arr.begin(),arr.end()); //nlogn
-    for(int j=i+1;i<n&&j<n;j++)
-    {
-        if(arr[i]!=arr[j])
-        {
-            i++;
-            arr[i]=arr[j]; // overwrite duplicates
-        }
+//optimze sol
+class Solution {
+  public:
+    vector<int> removeDuplicates(vector<int> &arr) {
+        // code here
+       int idx=1;
+       for(int i=1;i<arr.size();i++)
+       {
+           if(arr[i]!=arr[i-1])
+           {
+               arr[idx]=arr[i];
+               idx++;
+           }
+       }
+       arr.resize(idx);
+       return arr;
     }
-    arr.resize(i+1); // shrink vector to contain only unique values
-}
-
-int main() {
-    vector<int>arr={1,2,3,1,2,3,4,5,6,1};
-    removeDuplicates(arr,10);
-    for(auto a:arr)
-    {
-        cout<<a<<" ";
-    }
-    return 0;
-}
+};
+//tc=o(n)
+//sc=o(1)
